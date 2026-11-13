@@ -1,0 +1,21 @@
+meta {
+  name: 12 - Materia borrada 404
+  type: http
+  seq: 12
+}
+
+get {
+  url: {{baseUrl}}/api/materias/{{materiaId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("HTTP 404", () => {
+    expect(res.getStatus()).to.equal(404);
+  });
+}

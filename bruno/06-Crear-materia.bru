@@ -1,0 +1,38 @@
+meta {
+  name: 06 - Crear materia
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/api/materias
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "nombre": "Programacion Web",
+    "semestre": 4,
+    "descripcion": "API REST con Spring Boot",
+    "categoriaId": {{categoriaId}}
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 201) bru.setVar("materiaId", res.getBody().id);
+}
+
+tests {
+  test("HTTP 201", () => {
+    expect(res.getStatus()).to.equal(201);
+  });
+}

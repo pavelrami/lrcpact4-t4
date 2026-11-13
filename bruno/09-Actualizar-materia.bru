@@ -1,0 +1,34 @@
+meta {
+  name: 09 - Actualizar materia
+  type: http
+  seq: 9
+}
+
+put {
+  url: {{baseUrl}}/api/materias/{{materiaId}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "nombre": "Programacion Web Avanzada",
+    "semestre": 5,
+    "descripcion": "Actualizada con PUT",
+    "categoriaId": {{categoriaId}}
+  }
+}
+
+tests {
+  test("HTTP 200", () => {
+    expect(res.getStatus()).to.equal(200);
+  });
+}

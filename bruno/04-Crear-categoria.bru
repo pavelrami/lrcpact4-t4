@@ -1,0 +1,36 @@
+meta {
+  name: 04 - Crear categoria
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/categorias
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "nombre": "Programacion",
+    "descripcion": "Materias de desarrollo"
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 201) bru.setVar("categoriaId", res.getBody().id);
+}
+
+tests {
+  test("HTTP 201", () => {
+    expect(res.getStatus()).to.equal(201);
+  });
+}

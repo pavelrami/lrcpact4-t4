@@ -1,0 +1,17 @@
+[Unit]
+Description=LRCP Actividad 4 - Spring Boot REST JWT
+After=network.target mysql.service
+Wants=mysql.service
+
+[Service]
+Type=simple
+User=azureuser
+WorkingDirectory=/home/azureuser/springboot-lrcp-act4
+EnvironmentFile=/etc/lrcp-act4.env
+ExecStart=/usr/bin/java -Xms64m -Xmx256m -XX:MaxMetaspaceSize=160m -jar /home/azureuser/springboot-lrcp-act4/lrcpact4-t4-0.0.1-SNAPSHOT.jar
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

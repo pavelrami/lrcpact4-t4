@@ -1,0 +1,21 @@
+meta {
+  name: 13 - Token invalido
+  type: http
+  seq: 13
+}
+
+get {
+  url: {{baseUrl}}/api/materias
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: un-token-falso
+}
+
+tests {
+  test("HTTP 401 con JWT invalido", () => {
+    expect(res.getStatus()).to.equal(401);
+  });
+}

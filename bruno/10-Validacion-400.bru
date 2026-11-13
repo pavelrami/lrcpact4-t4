@@ -1,0 +1,34 @@
+meta {
+  name: 10 - Validacion nombre vacio
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{baseUrl}}/api/materias
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "nombre": "",
+    "semestre": 0,
+    "descripcion": "Debe devolver 400",
+    "categoriaId": {{categoriaId}}
+  }
+}
+
+tests {
+  test("HTTP 400", () => {
+    expect(res.getStatus()).to.equal(400);
+  });
+}

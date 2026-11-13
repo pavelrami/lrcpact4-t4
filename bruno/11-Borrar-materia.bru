@@ -1,0 +1,21 @@
+meta {
+  name: 11 - Eliminar materia
+  type: http
+  seq: 11
+}
+
+delete {
+  url: {{baseUrl}}/api/materias/{{materiaId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("HTTP 204", () => {
+    expect(res.getStatus()).to.equal(204);
+  });
+}

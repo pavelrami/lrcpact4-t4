@@ -1,0 +1,21 @@
+meta {
+  name: 08 - Obtener materia por ID
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{baseUrl}}/api/materias/{{materiaId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("HTTP 200", () => {
+    expect(res.getStatus()).to.equal(200);
+  });
+}
